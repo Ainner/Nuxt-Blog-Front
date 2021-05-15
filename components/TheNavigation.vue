@@ -5,6 +5,7 @@
       <li><nuxt-link to="/todo">待办</nuxt-link></li>
       <li><nuxt-link to="/bookmarks">书签</nuxt-link></li>
       <li><nuxt-link to="/404">错误</nuxt-link></li>
+      <li><nuxt-link to="/math">数学</nuxt-link></li>
     </ul>
   </div>
 </template>
