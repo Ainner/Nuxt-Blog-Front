@@ -10,6 +10,8 @@
             <!-- <canvas :id="'canvas'+index" width="300" height="200"></canvas> -->
         </li>
     </ul>
+    <button id="openDemo" @click="openDemo">放大和缩小</button>
+    <iframe id="demo" :class="demo ? `open` : ``" src="/html/zuobiao.html"></iframe>
   </div>
 </template>
 <script>
@@ -35,9 +37,13 @@ export default {
                     '加法: OA+OB = OC (平行四边形法则) (三角形法则)',
                     '减法: OA-OB = BA',
                     '向量与数的乘法: λ大于0方向相同, λ小于0方向相反, 延长λ倍',
+                    '向量的投影：a垂直于b的长度叫做a在b上的投影',
+                    '向量的坐标：将向量的起点移动到原点O, 终点的坐标表示向量',
                 ]
             }
-        ]
+        ],
+        demo: false,
+        iframeState: false,
     };
   },
   head: {
@@ -54,6 +60,16 @@ export default {
   mounted() {
   },
   methods: {
+    openDemo(v) {
+      if (!this.iframeState) {
+        this.demo = true
+        document.getElementById('demo').contentWindow.location.reload();
+      } else {
+        this.demo = false
+        document.getElementById('demo').contentWindow.location.reload();
+      }
+      this.iframeState = !this.iframeState
+    }
   },
 };
 </script>
@@ -74,5 +90,31 @@ export default {
 .gsList li .title {
     font-weight: bold;
     color: #333;
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
+  background: #fff;
+  border: none;
+}
+
+#openDemo {
+  position: fixed;
+  left: 100px;
+  bottom: 100px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 30px;
+  z-index: 11;
+}
+
+.open {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 10;
 }
 </style>
